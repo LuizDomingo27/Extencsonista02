@@ -35,10 +35,13 @@
          // 
          // LblHora
          // 
-         LblHora.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-         LblHora.Location = new Point(3, 11);
+         LblHora.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+         LblHora.AutoSize = true;
+         LblHora.Font = new Font("Segoe UI Semibold", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
+         LblHora.Location = new Point(85, 23);
+         LblHora.Margin = new Padding(5, 0, 5, 0);
          LblHora.Name = "LblHora";
-         LblHora.Size = new Size(165, 37);
+         LblHora.Size = new Size(50, 37);
          LblHora.TabIndex = 0;
          LblHora.Text = "---";
          LblHora.TextAlign = ContentAlignment.MiddleCenter;
@@ -50,12 +53,16 @@
          // 
          // UC_Hora
          // 
-         AutoScaleDimensions = new SizeF(7F, 15F);
+         AutoScaleDimensions = new SizeF(11F, 28F);
          AutoScaleMode = AutoScaleMode.Font;
+         AutoSizeMode = AutoSizeMode.GrowAndShrink;
          Controls.Add(LblHora);
+         Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
+         Margin = new Padding(5, 5, 5, 5);
          Name = "UC_Hora";
-         Size = new Size(171, 58);
+         Size = new Size(220, 83);
          ResumeLayout(false);
+         PerformLayout();
       }
 
       #endregion

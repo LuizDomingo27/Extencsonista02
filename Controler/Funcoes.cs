@@ -232,5 +232,36 @@ namespace ControleEstoqueEscolar.Controler
             MessageBox.Show(e.Message);
          }
       }
+
+      public static bool RecuperarSenha(string nome, string email, string senha)
+      {
+         try
+         {
+            using ConexaoContexto conexao = new();
+            var result = conexao.Usuarios.Find(email);
+            string nomeComparado = result.Nome;
+            string emailComparado = result.Email;
+            string senhaComparado = result.Senha;
+
+            if (nomeComparado == nome && emailComparado == email)
+            {
+               result.Nome = nome;
+               result.Email = email;
+               result.Senha = senha;
+               conexao.SaveChanges();
+               return true;
+            }
+            else
+            {
+               MessageBox.Show("Usuário ou email não encontrado");
+               return false;
+            }
+         }
+         catch (Exception e)
+         {
+            MessageBox.Show("Erro ao atualizar a senha...\n" + e.InnerException.Message);
+         }
+         return false;
+      }
    }
 }

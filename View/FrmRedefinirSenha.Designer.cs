@@ -37,12 +37,15 @@
          Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
          Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
          Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+         Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+         Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
          Btn_Redefinir = new Guna.UI2.WinForms.Guna2Button();
-         guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
+         TxtRecuSenha_Email = new Guna.UI2.WinForms.Guna2TextBox();
          guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
          guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(components);
-         guna2TextBox2 = new Guna.UI2.WinForms.Guna2TextBox();
+         TxtRecuSenha_Senha = new Guna.UI2.WinForms.Guna2TextBox();
          label1 = new Label();
+         TxtRecu_nome = new Guna.UI2.WinForms.Guna2TextBox();
          SuspendLayout();
          // 
          // Btn_Redefinir
@@ -63,28 +66,29 @@
          Btn_Redefinir.Size = new Size(141, 37);
          Btn_Redefinir.TabIndex = 0;
          Btn_Redefinir.Text = "OK";
+         Btn_Redefinir.Click += Btn_Redefinir_Click;
          // 
-         // guna2TextBox1
+         // TxtRecuSenha_Email
          // 
-         guna2TextBox1.BorderRadius = 4;
-         guna2TextBox1.CustomizableEdges = customizableEdges3;
-         guna2TextBox1.DefaultText = "";
-         guna2TextBox1.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-         guna2TextBox1.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-         guna2TextBox1.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-         guna2TextBox1.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-         guna2TextBox1.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-         guna2TextBox1.Font = new Font("Segoe UI", 12F);
-         guna2TextBox1.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-         guna2TextBox1.Location = new Point(22, 119);
-         guna2TextBox1.Margin = new Padding(4);
-         guna2TextBox1.Name = "guna2TextBox1";
-         guna2TextBox1.PasswordChar = '\0';
-         guna2TextBox1.PlaceholderText = "Digite e-mail";
-         guna2TextBox1.SelectedText = "";
-         guna2TextBox1.ShadowDecoration.CustomizableEdges = customizableEdges4;
-         guna2TextBox1.Size = new Size(200, 36);
-         guna2TextBox1.TabIndex = 1;
+         TxtRecuSenha_Email.BorderRadius = 4;
+         TxtRecuSenha_Email.CustomizableEdges = customizableEdges3;
+         TxtRecuSenha_Email.DefaultText = "";
+         TxtRecuSenha_Email.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+         TxtRecuSenha_Email.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+         TxtRecuSenha_Email.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+         TxtRecuSenha_Email.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+         TxtRecuSenha_Email.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+         TxtRecuSenha_Email.Font = new Font("Segoe UI", 12F);
+         TxtRecuSenha_Email.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+         TxtRecuSenha_Email.Location = new Point(22, 156);
+         TxtRecuSenha_Email.Margin = new Padding(4);
+         TxtRecuSenha_Email.Name = "TxtRecuSenha_Email";
+         TxtRecuSenha_Email.PasswordChar = '\0';
+         TxtRecuSenha_Email.PlaceholderText = "Digite e-mail";
+         TxtRecuSenha_Email.SelectedText = "";
+         TxtRecuSenha_Email.ShadowDecoration.CustomizableEdges = customizableEdges4;
+         TxtRecuSenha_Email.Size = new Size(200, 36);
+         TxtRecuSenha_Email.TabIndex = 1;
          // 
          // guna2ControlBox1
          // 
@@ -103,27 +107,27 @@
          // 
          guna2Elipse1.TargetControl = this;
          // 
-         // guna2TextBox2
+         // TxtRecuSenha_Senha
          // 
-         guna2TextBox2.BorderRadius = 4;
-         guna2TextBox2.CustomizableEdges = customizableEdges7;
-         guna2TextBox2.DefaultText = "";
-         guna2TextBox2.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-         guna2TextBox2.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-         guna2TextBox2.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-         guna2TextBox2.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-         guna2TextBox2.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-         guna2TextBox2.Font = new Font("Segoe UI", 12F);
-         guna2TextBox2.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-         guna2TextBox2.Location = new Point(22, 183);
-         guna2TextBox2.Margin = new Padding(4);
-         guna2TextBox2.Name = "guna2TextBox2";
-         guna2TextBox2.PasswordChar = '\0';
-         guna2TextBox2.PlaceholderText = "Nova Senha";
-         guna2TextBox2.SelectedText = "";
-         guna2TextBox2.ShadowDecoration.CustomizableEdges = customizableEdges8;
-         guna2TextBox2.Size = new Size(200, 36);
-         guna2TextBox2.TabIndex = 1;
+         TxtRecuSenha_Senha.BorderRadius = 4;
+         TxtRecuSenha_Senha.CustomizableEdges = customizableEdges7;
+         TxtRecuSenha_Senha.DefaultText = "";
+         TxtRecuSenha_Senha.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+         TxtRecuSenha_Senha.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+         TxtRecuSenha_Senha.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+         TxtRecuSenha_Senha.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+         TxtRecuSenha_Senha.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+         TxtRecuSenha_Senha.Font = new Font("Segoe UI", 12F);
+         TxtRecuSenha_Senha.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+         TxtRecuSenha_Senha.Location = new Point(22, 218);
+         TxtRecuSenha_Senha.Margin = new Padding(4);
+         TxtRecuSenha_Senha.Name = "TxtRecuSenha_Senha";
+         TxtRecuSenha_Senha.PasswordChar = '\0';
+         TxtRecuSenha_Senha.PlaceholderText = "Nova Senha";
+         TxtRecuSenha_Senha.SelectedText = "";
+         TxtRecuSenha_Senha.ShadowDecoration.CustomizableEdges = customizableEdges8;
+         TxtRecuSenha_Senha.Size = new Size(200, 36);
+         TxtRecuSenha_Senha.TabIndex = 1;
          // 
          // label1
          // 
@@ -135,6 +139,28 @@
          label1.TabIndex = 3;
          label1.Text = "Redifinição de senha";
          // 
+         // TxtRecu_nome
+         // 
+         TxtRecu_nome.BorderRadius = 4;
+         TxtRecu_nome.CustomizableEdges = customizableEdges9;
+         TxtRecu_nome.DefaultText = "";
+         TxtRecu_nome.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+         TxtRecu_nome.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+         TxtRecu_nome.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+         TxtRecu_nome.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+         TxtRecu_nome.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+         TxtRecu_nome.Font = new Font("Segoe UI", 12F);
+         TxtRecu_nome.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+         TxtRecu_nome.Location = new Point(22, 94);
+         TxtRecu_nome.Margin = new Padding(4);
+         TxtRecu_nome.Name = "TxtRecu_nome";
+         TxtRecu_nome.PasswordChar = '\0';
+         TxtRecu_nome.PlaceholderText = "Nome Usuário";
+         TxtRecu_nome.SelectedText = "";
+         TxtRecu_nome.ShadowDecoration.CustomizableEdges = customizableEdges10;
+         TxtRecu_nome.Size = new Size(200, 36);
+         TxtRecu_nome.TabIndex = 1;
+         // 
          // FrmRedefinirSenha
          // 
          AutoScaleDimensions = new SizeF(7F, 15F);
@@ -143,8 +169,9 @@
          ClientSize = new Size(244, 354);
          Controls.Add(label1);
          Controls.Add(guna2ControlBox1);
-         Controls.Add(guna2TextBox2);
-         Controls.Add(guna2TextBox1);
+         Controls.Add(TxtRecuSenha_Senha);
+         Controls.Add(TxtRecu_nome);
+         Controls.Add(TxtRecuSenha_Email);
          Controls.Add(Btn_Redefinir);
          FormBorderStyle = FormBorderStyle.None;
          Name = "FrmRedefinirSenha";
@@ -157,10 +184,11 @@
       #endregion
 
       private Guna.UI2.WinForms.Guna2Button Btn_Redefinir;
-      private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
+      private Guna.UI2.WinForms.Guna2TextBox TxtRecuSenha_Email;
       private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox1;
       private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
-      private Guna.UI2.WinForms.Guna2TextBox guna2TextBox2;
+      private Guna.UI2.WinForms.Guna2TextBox TxtRecuSenha_Senha;
       private Label label1;
+      private Guna.UI2.WinForms.Guna2TextBox TxtRecu_nome;
    }
 }
