@@ -89,11 +89,13 @@
          // 
          // uC_Hora1
          // 
+         uC_Hora1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+         uC_Hora1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
          uC_Hora1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-         uC_Hora1.Location = new Point(725, 540);
+         uC_Hora1.Location = new Point(572, 538);
          uC_Hora1.Margin = new Padding(4, 5, 4, 5);
          uC_Hora1.Name = "uC_Hora1";
-         uC_Hora1.Size = new Size(184, 58);
+         uC_Hora1.Size = new Size(345, 58);
          uC_Hora1.TabIndex = 1;
          // 
          // FrmMain

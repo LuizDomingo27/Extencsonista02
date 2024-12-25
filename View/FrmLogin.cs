@@ -1,9 +1,5 @@
-using System.Text;
-
 using ControleEstoqueEscolar.Controler;
 using ControleEstoqueEscolar.View;
-
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace ControleEstoqueEscolar
 {
@@ -24,7 +20,6 @@ namespace ControleEstoqueEscolar
             bool result = Funcoes.Login(senha, email);
             if (result)
             {
-               this.Dispose();
                Close();
                Thread t = new(() => Application.Run(new FrmMain()));
                t.Start();
@@ -38,10 +33,16 @@ namespace ControleEstoqueEscolar
 
       private void Lbl_Redefinir_Click(object sender, EventArgs e)
       {
-         using FrmRedefinirSenha fr = new();
-         this.Hide();
-         fr.ShowDialog();
          this.Close();
+         Thread t = new Thread(() => Application.Run(new FrmRedefinirSenha()));
+         t.Start();
+      }
+
+      private void Lbl_NovoUser_Click(object sender, EventArgs e)
+      {
+         this.Close();
+         Thread t = new(() => Application.Run(new FrmUser()));
+         t.Start();
       }
    }
 }

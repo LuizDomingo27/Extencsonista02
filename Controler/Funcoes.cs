@@ -1,5 +1,4 @@
-﻿using System.Reflection.Metadata.Ecma335;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
 
 using ControleEstoqueEscolar.DBContext;
@@ -11,7 +10,10 @@ namespace ControleEstoqueEscolar.Controler
 {
    public static class Funcoes
    {
-      //conexao.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+      static string senhaComparado;
+      static string nomeComparado;
+      static string emailComparado;
+      static int Id;
       public static void SalvarUsuario(Form frm, string nome, string email, string senha)
       {
          if (VerificaCamposVazios(frm))
@@ -68,7 +70,7 @@ namespace ControleEstoqueEscolar.Controler
          }
          catch (Exception e)
          {
-            MessageBox.Show("Erro ao cadastrar produto,\n Verifique se eles já está cadastrado.");
+            MessageBox.Show("Erro ao cadastrar produto,\n Verifique se ele já está cadastrado.");
             MessageBox.Show(e.InnerException.Message);
             return;
          }
@@ -238,11 +240,16 @@ namespace ControleEstoqueEscolar.Controler
          try
          {
             using ConexaoContexto conexao = new();
-            var result = conexao.Usuarios.Find(email);
-            string nomeComparado = result.Nome;
-            string emailComparado = result.Email;
-            string senhaComparado = result.Senha;
-
+            var id = (from use in conexao.Usuarios where use.Email == email select use).ToList();
+            foreach (var user in id)
+            {
+               senhaComparado = user.Senha;
+               nomeComparado = user.Nome;
+               emailComparado = user.Email;
+               Id = user.Id;
+            }
+            
+            var result = conexao.Usuarios.Find(Id);
             if (nomeComparado == nome && emailComparado == email)
             {
                result.Nome = nome;
@@ -259,9 +266,23 @@ namespace ControleEstoqueEscolar.Controler
          }
          catch (Exception e)
          {
-            MessageBox.Show("Erro ao atualizar a senha...\n" + e.InnerException.Message);
+            MessageBox.Show("Erro ao atualizar a senha...\n" + e.Message);
          }
          return false;
+      }
+
+      public static string EncryptiPassowrMD5(string senha)
+      {
+         using MD5 md5 = MD5.Create();
+         byte[] caracter = md5.ComputeHash(Encoding.UTF8.GetBytes(senha));
+         StringBuilder sb = new();
+
+         foreach (byte letter in caracter)
+         {
+            sb.Append(letter.ToString("X2"));
+         }
+
+         return sb.ToString();
       }
    }
 }

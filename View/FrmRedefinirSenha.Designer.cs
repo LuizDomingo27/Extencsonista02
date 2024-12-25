@@ -64,7 +64,7 @@
          Btn_Redefinir.Name = "Btn_Redefinir";
          Btn_Redefinir.ShadowDecoration.CustomizableEdges = customizableEdges2;
          Btn_Redefinir.Size = new Size(141, 37);
-         Btn_Redefinir.TabIndex = 0;
+         Btn_Redefinir.TabIndex = 3;
          Btn_Redefinir.Text = "OK";
          Btn_Redefinir.Click += Btn_Redefinir_Click;
          // 
@@ -122,12 +122,12 @@
          TxtRecuSenha_Senha.Location = new Point(22, 218);
          TxtRecuSenha_Senha.Margin = new Padding(4);
          TxtRecuSenha_Senha.Name = "TxtRecuSenha_Senha";
-         TxtRecuSenha_Senha.PasswordChar = '\0';
+         TxtRecuSenha_Senha.PasswordChar = '*';
          TxtRecuSenha_Senha.PlaceholderText = "Nova Senha";
          TxtRecuSenha_Senha.SelectedText = "";
          TxtRecuSenha_Senha.ShadowDecoration.CustomizableEdges = customizableEdges8;
          TxtRecuSenha_Senha.Size = new Size(200, 36);
-         TxtRecuSenha_Senha.TabIndex = 1;
+         TxtRecuSenha_Senha.TabIndex = 2;
          // 
          // label1
          // 
@@ -159,7 +159,7 @@
          TxtRecu_nome.SelectedText = "";
          TxtRecu_nome.ShadowDecoration.CustomizableEdges = customizableEdges10;
          TxtRecu_nome.Size = new Size(200, 36);
-         TxtRecu_nome.TabIndex = 1;
+         TxtRecu_nome.TabIndex = 0;
          // 
          // FrmRedefinirSenha
          // 

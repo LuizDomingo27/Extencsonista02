@@ -45,6 +45,7 @@
          Txt_Senha_Login = new Guna.UI2.WinForms.Guna2TextBox();
          Lbl_Redefinir = new Label();
          label2 = new Label();
+         Lbl_NovoUser = new Label();
          SuspendLayout();
          // 
          // guna2AnimateWindow1
@@ -64,7 +65,7 @@
          BtnLogin.FillColor = SystemColors.Menu;
          BtnLogin.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
          BtnLogin.ForeColor = Color.Black;
-         BtnLogin.Location = new Point(48, 259);
+         BtnLogin.Location = new Point(48, 233);
          BtnLogin.Name = "BtnLogin";
          BtnLogin.ShadowDecoration.CustomizableEdges = customizableEdges16;
          BtnLogin.Size = new Size(141, 37);
@@ -100,7 +101,7 @@
          Txt_Email_Login.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
          Txt_Email_Login.Font = new Font("Segoe UI", 14F);
          Txt_Email_Login.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-         Txt_Email_Login.Location = new Point(19, 100);
+         Txt_Email_Login.Location = new Point(19, 86);
          Txt_Email_Login.Margin = new Padding(6, 7, 6, 7);
          Txt_Email_Login.Name = "Txt_Email_Login";
          Txt_Email_Login.PasswordChar = '\0';
@@ -124,7 +125,7 @@
          Txt_Senha_Login.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
          Txt_Senha_Login.Font = new Font("Segoe UI", 15F);
          Txt_Senha_Login.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-         Txt_Senha_Login.Location = new Point(19, 176);
+         Txt_Senha_Login.Location = new Point(19, 162);
          Txt_Senha_Login.Margin = new Padding(6, 7, 6, 7);
          Txt_Senha_Login.Name = "Txt_Senha_Login";
          Txt_Senha_Login.PasswordChar = '*';
@@ -139,7 +140,7 @@
          Lbl_Redefinir.AutoSize = true;
          Lbl_Redefinir.Cursor = Cursors.Hand;
          Lbl_Redefinir.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-         Lbl_Redefinir.Location = new Point(77, 325);
+         Lbl_Redefinir.Location = new Point(77, 326);
          Lbl_Redefinir.Name = "Lbl_Redefinir";
          Lbl_Redefinir.Size = new Size(90, 15);
          Lbl_Redefinir.TabIndex = 3;
@@ -156,6 +157,18 @@
          label2.TabIndex = 3;
          label2.Text = "Login";
          // 
+         // Lbl_NovoUser
+         // 
+         Lbl_NovoUser.AutoSize = true;
+         Lbl_NovoUser.Cursor = Cursors.Hand;
+         Lbl_NovoUser.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+         Lbl_NovoUser.Location = new Point(88, 297);
+         Lbl_NovoUser.Name = "Lbl_NovoUser";
+         Lbl_NovoUser.Size = new Size(69, 15);
+         Lbl_NovoUser.TabIndex = 3;
+         Lbl_NovoUser.Text = "Nova Conta";
+         Lbl_NovoUser.Click += Lbl_NovoUser_Click;
+         // 
          // FrmLogin
          // 
          AutoScaleDimensions = new SizeF(7F, 15F);
@@ -163,6 +176,7 @@
          BackColor = Color.White;
          ClientSize = new Size(244, 354);
          Controls.Add(label2);
+         Controls.Add(Lbl_NovoUser);
          Controls.Add(Lbl_Redefinir);
          Controls.Add(Txt_Senha_Login);
          Controls.Add(Txt_Email_Login);
@@ -188,5 +202,6 @@
       private Guna.UI2.WinForms.Guna2TextBox Txt_Senha_Login;
       private Label label2;
       private Label Lbl_Redefinir;
+      private Label Lbl_NovoUser;
    }
 }
