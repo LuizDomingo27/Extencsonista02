@@ -28,11 +28,22 @@ namespace ControleEstoqueEscolar.View
          }
          else
          {
-            string senha = Funcoes.EncriptPassword(TxtRecuSenha_Senha.Text);
+            string senha = TxtRecuSenha_Senha.Text;
             string email = TxtRecuSenha_Email.Text;
             string nome = TxtRecu_nome.Text;
+            int forcasenha = Funcoes.VerificarForcaSenha(senha);
 
-            if (Funcoes.RecuperarSenha(nome, email,senha))
+            if (forcasenha >= 5)
+            {
+               Funcoes.EncriptPassword(senha);
+            }
+            else
+            {
+               MessageBox.Show("Digite letras maiuscula, minuscula, números e simbolos\n e no minimo 6 caractere.");
+               return;
+            }
+
+            if (Funcoes.RecuperarSenha(nome, email, senha))
             {
                MessageBox.Show("Atualização concluida...");
                Dispose();

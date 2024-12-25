@@ -248,7 +248,7 @@ namespace ControleEstoqueEscolar.Controler
                emailComparado = user.Email;
                Id = user.Id;
             }
-            
+
             var result = conexao.Usuarios.Find(Id);
             if (nomeComparado == nome && emailComparado == email)
             {
@@ -283,6 +283,27 @@ namespace ControleEstoqueEscolar.Controler
          }
 
          return sb.ToString();
+      }
+
+      public static int VerificarForcaSenha(string senha)
+      {
+         int forca = 0;
+         if (senha.Length >= 6)
+            forca++;
+
+         if (senha.Any(char.IsLower))
+            forca++;
+
+         if (senha.Any(char.IsUpper))
+            forca++;
+
+         if (senha.Any(char.IsNumber))
+            forca++;
+
+         if (senha.Any(letra => !char.IsLetterOrDigit(letra)))
+            forca++;
+
+         return forca;
       }
    }
 }
