@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using ControleEstoqueEscolar.Report;
+
 namespace ControleEstoqueEscolar.View
 {
    public partial class FrmMain : Form
@@ -27,6 +29,12 @@ namespace ControleEstoqueEscolar.View
       {
          using FrmProdutos frm = new();
          frm.ShowDialog();
+      }
+
+      private void TsRelatorio_Click(object sender, EventArgs e)
+      {
+         using FrmReport frm = new();
+         frm.ShowDialog(this);
       }
    }
 }

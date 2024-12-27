@@ -1,10 +1,14 @@
-﻿using System.Security.Cryptography;
+﻿using System.Data;
+using System.Diagnostics;
+using System.Security.Cryptography;
 using System.Text;
 
 using ControleEstoqueEscolar.DBContext;
 using ControleEstoqueEscolar.ModelContext;
 
 using Guna.UI2.WinForms;
+
+using Microsoft.Reporting.WinForms;
 
 namespace ControleEstoqueEscolar.Controler
 {
@@ -305,5 +309,80 @@ namespace ControleEstoqueEscolar.Controler
 
          return forca;
       }
+
+      public static void Exportar(string nomeArquivo, string rdlc, string[] DS = null, object[] DSDataTable = null,
+                       ReportParameterCollection p = null,
+                       string Para = "PDF")
+      {
+         ReportViewer report = new ReportViewer();
+         report.LocalReport.EnableExternalImages = true;
+
+         if (DS != null)
+         {
+            if (DS.Length > 0)
+            {
+               report.LocalReport.DataSources.Clear();
+               for (int i = 0; i < DSDataTable.Length; i++)
+               {
+                  ReportDataSource rds = new ReportDataSource(DS[i], DSDataTable[i] as DataTable);
+                  report.LocalReport.DataSources.Add(rds);
+               }
+            }
+         }
+         //string CaminhoReports = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Relatorios", rdlc + ".rdlc");
+         string CaminhoReports = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Report", rdlc + ".rdlc");
+         report.LocalReport.ReportPath = CaminhoReports;
+
+         if (!nomeArquivo.Contains(":"))
+         {
+            nomeArquivo = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, nomeArquivo);
+         }
+
+         if (p != null)
+            report.LocalReport.SetParameters(p);
+
+         report.Refresh();
+         report.RefreshReport();
+
+         try
+         {
+            Warning[] warnings;
+            string[] streamids;
+            string mimeType;
+            string encoding;
+            string filenameExtension;
+
+            string t = Para.ToUpper() == "EXCEL" ? ".xls" : ".pdf";
+
+            byte[] bytes = report.LocalReport.Render(
+            Para, null, out mimeType, out encoding, out filenameExtension,
+            out streamids, out warnings);
+            using (FileStream fs = new FileStream(nomeArquivo + t, FileMode.Create))
+            {
+               fs.Write(bytes, 0, bytes.Length);
+            }
+
+            try
+            {
+               ProcessStartInfo psi = new ProcessStartInfo
+               {
+                  FileName = nomeArquivo + t,
+                  UseShellExecute = true
+               };
+
+               Process.Start(psi);
+            }
+            catch (Exception ex)
+            {
+               MessageBox.Show(ex.Message);
+            }
+
+         }
+         catch (Exception ex)
+         {
+            MessageBox.Show(ex.Message);
+         }
+      }
+
    }
 }

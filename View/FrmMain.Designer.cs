@@ -86,6 +86,7 @@
          TsRelatorio.Name = "TsRelatorio";
          TsRelatorio.Size = new Size(58, 22);
          TsRelatorio.Text = "Relatório";
+         TsRelatorio.Click += TsRelatorio_Click;
          // 
          // uC_Hora1
          // 

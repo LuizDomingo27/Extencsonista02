@@ -1,6 +1,5 @@
 ﻿using ControleEstoqueEscolar.Controler;
 
-
 namespace ControleEstoqueEscolar.View
 {
    public partial class FrmUser : Form
