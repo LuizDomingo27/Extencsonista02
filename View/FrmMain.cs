@@ -36,5 +36,11 @@ namespace ControleEstoqueEscolar.View
          using FrmReport frm = new();
          frm.ShowDialog(this);
       }
+
+      private void TsSaidaProduto_Click(object sender, EventArgs e)
+      {
+         using Frm_SaidaProduto frm = new();
+         frm.ShowDialog();
+      }
    }
 }

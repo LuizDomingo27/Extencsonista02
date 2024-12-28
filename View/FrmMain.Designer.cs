@@ -35,13 +35,13 @@
          TsUsuario = new ToolStripButton();
          toolStripSeparator2 = new ToolStripSeparator();
          TsRelatorio = new ToolStripButton();
-         uC_Hora1 = new UC_Hora();
+         TsSaidaProduto = new ToolStripButton();
          toolStrip1.SuspendLayout();
          SuspendLayout();
          // 
          // toolStrip1
          // 
-         toolStrip1.Items.AddRange(new ToolStripItem[] { TsProduto, toolStripSeparator1, TsUsuario, toolStripSeparator2, TsRelatorio });
+         toolStrip1.Items.AddRange(new ToolStripItem[] { TsProduto, toolStripSeparator1, TsSaidaProduto, TsUsuario, toolStripSeparator2, TsRelatorio });
          toolStrip1.Location = new Point(0, 0);
          toolStrip1.Name = "toolStrip1";
          toolStrip1.Size = new Size(914, 25);
@@ -88,23 +88,20 @@
          TsRelatorio.Text = "Relatório";
          TsRelatorio.Click += TsRelatorio_Click;
          // 
-         // uC_Hora1
+         // TsSaidaProduto
          // 
-         uC_Hora1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-         uC_Hora1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-         uC_Hora1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-         uC_Hora1.Location = new Point(572, 538);
-         uC_Hora1.Margin = new Padding(4, 5, 4, 5);
-         uC_Hora1.Name = "uC_Hora1";
-         uC_Hora1.Size = new Size(345, 58);
-         uC_Hora1.TabIndex = 1;
+         TsSaidaProduto.DisplayStyle = ToolStripItemDisplayStyle.Text;
+         TsSaidaProduto.ImageTransparentColor = Color.Magenta;
+         TsSaidaProduto.Name = "TsSaidaProduto";
+         TsSaidaProduto.Size = new Size(85, 22);
+         TsSaidaProduto.Text = "Saida Produto";
+         TsSaidaProduto.Click += TsSaidaProduto_Click;
          // 
          // FrmMain
          // 
          AutoScaleDimensions = new SizeF(8F, 20F);
          AutoScaleMode = AutoScaleMode.Font;
          ClientSize = new Size(914, 600);
-         Controls.Add(uC_Hora1);
          Controls.Add(toolStrip1);
          Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
          Margin = new Padding(3, 4, 3, 4);
@@ -128,5 +125,6 @@
       private ToolStripSeparator toolStripSeparator2;
       private ToolStripButton TsRelatorio;
       private UC_Hora uC_Hora1;
+      private ToolStripButton TsSaidaProduto;
    }
 }

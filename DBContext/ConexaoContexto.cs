@@ -9,6 +9,7 @@ namespace ControleEstoqueEscolar.DBContext
       //Criando o nosso conjuto de DbSet
       public DbSet<Usuario> Usuarios { get; set; }
       public DbSet<Produto> Produtos { get; set; }
+      public DbSet<DbSaidaProdutos> ProdutoSaidas { get; set; }
 
       //Criando a configuração para conexão com o Banco de dados
       protected override void OnConfiguring(DbContextOptionsBuilder optionBuider)

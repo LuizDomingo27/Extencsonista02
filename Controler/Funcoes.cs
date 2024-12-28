@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Data.Entity;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
@@ -84,7 +85,7 @@ namespace ControleEstoqueEscolar.Controler
       {
          foreach (Control control in frm.Controls)
          {
-            if (control is Guna2TextBox)
+            if (control is Guna2TextBox || control is TextBox)
             {
                if (control.Text == "")
                {
@@ -100,7 +101,7 @@ namespace ControleEstoqueEscolar.Controler
       {
          foreach (Control c in frm.Controls)
          {
-            if (c is ComboBox || c is Guna2TextBox)
+            if (c is ComboBox || c is Guna2TextBox || c is TextBox)
             {
                c.ResetText();
             }
@@ -324,7 +325,7 @@ namespace ControleEstoqueEscolar.Controler
                report.LocalReport.DataSources.Clear();
                for (int i = 0; i < DSDataTable.Length; i++)
                {
-                  ReportDataSource rds = new ReportDataSource(DS[i], DSDataTable[i] as DataTable);
+                  ReportDataSource rds = new(DS[i], DSDataTable[i] as DataTable);
                   report.LocalReport.DataSources.Add(rds);
                }
             }
@@ -376,7 +377,6 @@ namespace ControleEstoqueEscolar.Controler
             {
                MessageBox.Show(ex.Message);
             }
-
          }
          catch (Exception ex)
          {
@@ -384,5 +384,39 @@ namespace ControleEstoqueEscolar.Controler
          }
       }
 
+      public static void AdicionarDadosNaComboBox_Saida(ComboBox cboNomes)
+      {
+         using ConexaoContexto conexao = new();
+         var nomes = from n in conexao.Produtos select new { n.Nome };
+         //var categorias = (from c in conexao.Produtos select new { c.Categoria }).Distinct();
+         try
+         {
+            foreach (var p in nomes)
+            {
+               cboNomes.Items.Add(p.Nome);
+            }
+         }
+         catch (Exception e)
+         {
+            MessageBox.Show(e.Message);
+         }
+      }
+
+      public static void BuscarProdutosSaida(string nome, TextBox categoria, TextBox quantidade, TextBox qtdmin, Label id)
+      {
+         using ConexaoContexto conexao = new();
+         var produto = conexao.Produtos.Where(p => p.Nome == nome)
+                                       .Select(p =>
+                                        new { p.Id, p.Nome, p.Categoria, p.Quantidade, p.QuantidadeMinima })
+                                       .ToList();
+         produto.ForEach(p =>
+                        {
+                           id.Text = p.Id.ToString();
+                           nome = p.Nome;
+                           categoria.Text = p.Categoria.ToString();
+                           quantidade.Text = p.Quantidade.ToString();
+                           qtdmin.Text = p.QuantidadeMinima.ToString();
+                         });
+      }
    }
 }
