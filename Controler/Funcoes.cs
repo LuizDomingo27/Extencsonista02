@@ -1,5 +1,4 @@
 ﻿using System.Data;
-using System.Data.Entity;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
@@ -416,7 +415,100 @@ namespace ControleEstoqueEscolar.Controler
                            categoria.Text = p.Categoria.ToString();
                            quantidade.Text = p.Quantidade.ToString();
                            qtdmin.Text = p.QuantidadeMinima.ToString();
-                         });
+                        });
+      }
+
+      public static void MovimentacaoEstoque(int id, string nome, string categoria, int quantidade,
+         RadioButton rbSaida, RadioButton rbEntrada, int qtdmovimentacao)
+      {
+         try
+         {
+            using ConexaoContexto conexao = new();
+            if (rbEntrada.Checked)
+            {
+               quantidade += qtdmovimentacao;
+               var produto = conexao.Produtos.Find(id);
+               produto.Nome = nome;
+               produto.Categoria = categoria;
+               produto.Quantidade = quantidade;
+               conexao.SaveChanges();
+               MessageBox.Show($"Quantidade adicionada ao produto {nome}");
+
+               DbSaidaProdutos saida = new()
+               {
+                  Nome = nome,
+                  Categoria = categoria,
+                  Quantidade = qtdmovimentacao,
+                  Tipo = "Entrada"
+               };
+
+               conexao.ProdutoSaidas.Add(saida);
+               conexao.SaveChanges();
+               conexao.Dispose();
+            }
+            else if (rbSaida.Checked)
+            {
+               if (quantidade < qtdmovimentacao)
+               {
+                  MessageBox.Show($"Quantidade insuficiente\n" + $"Só temos uma quantidade de {quantidade}");
+                  return;
+               }
+               try
+               {
+                  quantidade -= qtdmovimentacao;
+                  DbSaidaProdutos saida = new()
+                  {
+                     Nome = nome,
+                     Categoria = categoria,
+                     Quantidade = qtdmovimentacao,
+                     Tipo = "Saida"
+                  };
+
+                  conexao.ProdutoSaidas.Add(saida);
+                  conexao.SaveChanges();
+
+                  //Atualizando os dados depois da retirada de uma quantidade
+                  var produto = conexao.Produtos.Find(id);
+                  produto.Quantidade = quantidade;
+                  conexao.SaveChanges();
+                  conexao.Dispose();
+                  MessageBox.Show($"Quantidade adicionada ao produto {nome}");
+
+               }
+               catch (Exception e)
+               {
+                  MessageBox.Show("Erro ao Retirar produto\n" + e.InnerException.Message);
+                  return;
+               }
+            }
+         }
+         catch (Exception e)
+         {
+            MessageBox.Show("Erro ao adicionar novos valores\n" + e.Message);
+            return;
+         }
+      }
+
+      public static void AdicionarDadosListviewSaida(ListView list)
+      {
+         List<DbSaidaProdutos> saida = [];
+         using ConexaoContexto conexao = new();
+         var dados = conexao.ProdutoSaidas;
+         var result = dados.Where(p => p.Id > 0)
+            .Select(p => new { p.Id, p.Nome, p.Categoria, p.Quantidade, p.Tipo }).ToList();
+
+         result.ForEach(p => saida.Add(new DbSaidaProdutos
+                       (p.Id, p.Nome, p.Categoria, p.Quantidade, p.Tipo)));
+
+         list.Items.Clear();
+         foreach (var p in result)
+         {
+            ListViewItem item = list.Items.Add(p.Id.ToString()); ;
+            item.SubItems.Add(p.Nome);
+            item.SubItems.Add(p.Categoria);
+            item.SubItems.Add(p.Quantidade.ToString());
+            item.SubItems.Add(p.Tipo.ToString());
+         }
       }
    }
 }
