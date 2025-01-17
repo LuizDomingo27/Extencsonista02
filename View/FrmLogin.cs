@@ -17,11 +17,14 @@ namespace ControleEstoqueEscolar
             string senha = Funcoes.EncriptPassword(Txt_Senha_Login.Text); ;
             string email = Txt_Email_Login.Text;
             bool result = Funcoes.Login(senha, email);
+            string nome = Funcoes.nome;
             if (result)
             {
-               Close();
-               Thread t = new(() => Application.Run(new FrmMain()));
-               t.Start();
+               Hide();
+               using FrmMain frm = new();
+               frm.LblUsuarioLogado.Text = $"Usuário logado - {nome}";
+               frm.ShowDialog();
+               Dispose();
             }
          }
          else

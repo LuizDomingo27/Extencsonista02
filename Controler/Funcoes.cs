@@ -1,7 +1,5 @@
 ﻿using System.Data;
 using System.Diagnostics;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -20,6 +18,7 @@ namespace ControleEstoqueEscolar.Controler
       static string nomeComparado;
       static string emailComparado;
       static int Id;
+      public static string nome;
       public static void SalvarUsuario(Form frm, string nome, string email, string senha)
       {
          if (VerificaCamposVazios(frm))
@@ -164,18 +163,20 @@ namespace ControleEstoqueEscolar.Controler
       public static bool Login(string senha, string email)
       {
          // Login teste => Lu2707**
-         // e-mail => teste@gmail.com
+         // e-mail => teste47@gmail.com
          List<Usuario> list = [];
          BuscarDados<Usuario>(list);
          var result = list.Where(use => use.Senha.Equals(senha) && use.Email.Equals(email))
                           .Select(r => new
                           {
                              r.Senha,
-                             r.Email
+                             r.Email,
+                             r.Nome
                           }).ToList();
 
          if (result.Count > 0)
          {
+            nome = result[0].Nome;
             return true;
          }
          else

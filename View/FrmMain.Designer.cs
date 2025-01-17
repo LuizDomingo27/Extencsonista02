@@ -36,6 +36,8 @@
          TsUsuario = new ToolStripButton();
          toolStripSeparator2 = new ToolStripSeparator();
          TsRelatorio = new ToolStripButton();
+         LblUsuarioLogado = new Label();
+         uC_Hora2 = new UC_Hora();
          toolStrip1.SuspendLayout();
          SuspendLayout();
          // 
@@ -97,11 +99,35 @@
          TsRelatorio.Text = "Relatório";
          TsRelatorio.Click += TsRelatorio_Click;
          // 
+         // LblUsuarioLogado
+         // 
+         LblUsuarioLogado.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+         LblUsuarioLogado.AutoSize = true;
+         LblUsuarioLogado.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+         LblUsuarioLogado.Location = new Point(6, 574);
+         LblUsuarioLogado.Name = "LblUsuarioLogado";
+         LblUsuarioLogado.Size = new Size(13, 17);
+         LblUsuarioLogado.TabIndex = 1;
+         LblUsuarioLogado.Text = "-";
+         // 
+         // uC_Hora2
+         // 
+         uC_Hora2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+         uC_Hora2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+         uC_Hora2.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
+         uC_Hora2.Location = new Point(573, 534);
+         uC_Hora2.Margin = new Padding(5);
+         uC_Hora2.Name = "uC_Hora2";
+         uC_Hora2.Size = new Size(338, 62);
+         uC_Hora2.TabIndex = 2;
+         // 
          // FrmMain
          // 
          AutoScaleDimensions = new SizeF(8F, 20F);
          AutoScaleMode = AutoScaleMode.Font;
          ClientSize = new Size(914, 600);
+         Controls.Add(uC_Hora2);
+         Controls.Add(LblUsuarioLogado);
          Controls.Add(toolStrip1);
          Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
          Icon = (Icon)resources.GetObject("$this.Icon");
@@ -127,5 +153,7 @@
       private ToolStripButton TsRelatorio;
       private UC_Hora uC_Hora1;
       private ToolStripButton TsSaidaProduto;
+      public Label LblUsuarioLogado;
+      private UC_Hora uC_Hora2;
    }
 }
