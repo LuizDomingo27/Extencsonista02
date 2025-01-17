@@ -104,6 +104,7 @@
          ClientSize = new Size(914, 600);
          Controls.Add(toolStrip1);
          Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+         Icon = (Icon)resources.GetObject("$this.Icon");
          Margin = new Padding(3, 4, 3, 4);
          MaximizeBox = false;
          Name = "FrmMain";

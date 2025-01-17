@@ -14,7 +14,6 @@ namespace ControleEstoqueEscolar
       {
          if (Txt_Email_Login.Text != string.Empty && Txt_Senha_Login.Text != string.Empty)
          {
-
             string senha = Funcoes.EncriptPassword(Txt_Senha_Login.Text); ;
             string email = Txt_Email_Login.Text;
             bool result = Funcoes.Login(senha, email);
