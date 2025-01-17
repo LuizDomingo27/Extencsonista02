@@ -1,5 +1,7 @@
 ﻿using System.Data;
 using System.Diagnostics;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -25,7 +27,7 @@ namespace ControleEstoqueEscolar.Controler
             Usuario user = new()
             {
                Email = email,
-               Nome = nome,
+               Nome = nome.ToUpper(),
                Senha = senha
             };
 
@@ -109,7 +111,6 @@ namespace ControleEstoqueEscolar.Controler
 
       public static void AdcionarDadosNaListViewProduto(ListView list)
       {
-         List<Produto> produtos = [];
          using ConexaoContexto conexao = new();
          var consulta = conexao.Produtos;
          var result = consulta.Where(p => p.Id > 0)
@@ -122,15 +123,9 @@ namespace ControleEstoqueEscolar.Controler
                                  p.QuantidadeMinima
                               }).ToList();
 
-         //Adicionando os dados na Lista de produtos que é o parametro
-         result.ForEach(p => produtos.Add
-                       (new Produto
-                       (p.Id, p.Nome, p.Categoria, p.Quantidade, p.QuantidadeMinima)));
-
-         list.Items.Clear();
-
          //Adicionando os dados dentro da ListView
-         foreach (var p in produtos)
+         list.Items.Clear();
+         foreach (var p in result)
          {
             ListViewItem item = list.Items.Add(p.Id.ToString()); ;
             item.SubItems.Add(p.Nome);
@@ -168,12 +163,18 @@ namespace ControleEstoqueEscolar.Controler
 
       public static bool Login(string senha, string email)
       {
-         List<Usuario> list = new();
+         // Login teste => Lu2707**
+         // e-mail => teste@gmail.com
+         List<Usuario> list = [];
          BuscarDados<Usuario>(list);
          var result = list.Where(use => use.Senha.Equals(senha) && use.Email.Equals(email))
-                          .Select(r => r.Senha).ToList();
+                          .Select(r => new
+                          {
+                             r.Senha,
+                             r.Email
+                          }).ToList();
 
-         if (result.Contains(senha))
+         if (result.Count > 0)
          {
             return true;
          }
@@ -491,14 +492,10 @@ namespace ControleEstoqueEscolar.Controler
 
       public static void AdicionarDadosListviewSaida(ListView list)
       {
-         List<DbSaidaProdutos> saida = [];
          using ConexaoContexto conexao = new();
          var dados = conexao.ProdutoSaidas;
          var result = dados.Where(p => p.Id > 0)
             .Select(p => new { p.Id, p.Nome, p.Categoria, p.Quantidade, p.Tipo }).ToList();
-
-         result.ForEach(p => saida.Add(new DbSaidaProdutos
-                       (p.Id, p.Nome, p.Categoria, p.Quantidade, p.Tipo)));
 
          list.Items.Clear();
          foreach (var p in result)

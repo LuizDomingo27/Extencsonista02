@@ -33,16 +33,14 @@ namespace ControleEstoqueEscolar
 
       private void Lbl_Redefinir_Click(object sender, EventArgs e)
       {
-         this.Close();
-         Thread t = new Thread(() => Application.Run(new FrmRedefinirSenha()));
-         t.Start();
+         using FrmRedefinirSenha frm = new FrmRedefinirSenha();
+         frm.ShowDialog();
       }
 
       private void Lbl_NovoUser_Click(object sender, EventArgs e)
       {
-         this.Close();
-         Thread t = new(() => Application.Run(new FrmUser()));
-         t.Start();
+         using FrmUser frm = new FrmUser();
+         frm.ShowDialog();
       }
    }
 }

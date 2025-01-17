@@ -32,10 +32,10 @@
          toolStrip1 = new ToolStrip();
          TsProduto = new ToolStripButton();
          toolStripSeparator1 = new ToolStripSeparator();
+         TsSaidaProduto = new ToolStripButton();
          TsUsuario = new ToolStripButton();
          toolStripSeparator2 = new ToolStripSeparator();
          TsRelatorio = new ToolStripButton();
-         TsSaidaProduto = new ToolStripButton();
          toolStrip1.SuspendLayout();
          SuspendLayout();
          // 
@@ -63,6 +63,15 @@
          toolStripSeparator1.Name = "toolStripSeparator1";
          toolStripSeparator1.Size = new Size(6, 25);
          // 
+         // TsSaidaProduto
+         // 
+         TsSaidaProduto.DisplayStyle = ToolStripItemDisplayStyle.Text;
+         TsSaidaProduto.ImageTransparentColor = Color.Magenta;
+         TsSaidaProduto.Name = "TsSaidaProduto";
+         TsSaidaProduto.Size = new Size(136, 22);
+         TsSaidaProduto.Text = "Movimentação Estoque";
+         TsSaidaProduto.Click += TsSaidaProduto_Click;
+         // 
          // TsUsuario
          // 
          TsUsuario.DisplayStyle = ToolStripItemDisplayStyle.Text;
@@ -87,15 +96,6 @@
          TsRelatorio.Size = new Size(58, 22);
          TsRelatorio.Text = "Relatório";
          TsRelatorio.Click += TsRelatorio_Click;
-         // 
-         // TsSaidaProduto
-         // 
-         TsSaidaProduto.DisplayStyle = ToolStripItemDisplayStyle.Text;
-         TsSaidaProduto.ImageTransparentColor = Color.Magenta;
-         TsSaidaProduto.Name = "TsSaidaProduto";
-         TsSaidaProduto.Size = new Size(85, 22);
-         TsSaidaProduto.Text = "Saida Produto";
-         TsSaidaProduto.Click += TsSaidaProduto_Click;
          // 
          // FrmMain
          // 
