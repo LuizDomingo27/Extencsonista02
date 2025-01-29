@@ -19,6 +19,7 @@ namespace ControleEstoqueEscolar.Controler
       static string emailComparado;
       static int Id;
       public static string nome;
+
       public static void SalvarUsuario(Form frm, string nome, string email, string senha)
       {
          if (VerificaCamposVazios(frm))
@@ -188,9 +189,9 @@ namespace ControleEstoqueEscolar.Controler
 
       static void BuscarDados<T>(List<T> obj) where T : class
       {
+         using ConexaoContexto conexao = new();
          if (obj.GetType() == typeof(List<Usuario>))
          {
-            using ConexaoContexto conexao = new();
             var result = from p in conexao.Usuarios select p;
             foreach (var use in result)
             {
@@ -199,7 +200,6 @@ namespace ControleEstoqueEscolar.Controler
          }
          else if (obj.GetType() == typeof(List<Produto>))
          {
-            using ConexaoContexto conexao = new();
             var result = from p in conexao.Produtos select p;
             foreach (var p in result)
             {
