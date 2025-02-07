@@ -7,56 +7,68 @@ namespace ControleEstoqueEscolar.Report
 {
    public static class Report
    {
-      public static void SelecionarOpcaoRelatorio(List<Produto> produto, ComboBox cat, RadioButton rbMaior100, RadioButton rbMenor100, RadioButton rbMenor50, RadioButton rbTodos, RadioButton rbCat)
+      public static bool SelecionarOpcaoRelatorio(List<Produto> produto, ComboBox cat, RadioButton rbMaior100, RadioButton rbMenor100, RadioButton rbMenor50, RadioButton rbTodos, RadioButton rbCat)
       {
          using ConexaoContexto conexao = new();
-
-         if (rbTodos.Checked)
+         try
          {
-            var dados = conexao.Produtos;
-            foreach (var p in dados)
+            if (rbTodos.Checked)
             {
-               produto.Add(new Produto(p.Id, p.Nome, p.Categoria, p.Quantidade, p.QuantidadeMinima));
+               var dados = conexao.Produtos;
+               foreach (var p in dados)
+               {
+                  produto.Add(new Produto(p.Id, p.Nome, p.Categoria, p.Quantidade, p.QuantidadeMinima));
+               }
+               return true;
+            }
+            else if (rbMenor100.Checked)
+            {
+               var dados = conexao.Produtos.Where(p => p.Quantidade < 100)
+                  .Select(p => new { p.Id, p.Nome, p.Categoria, p.Quantidade, p.QuantidadeMinima })
+                  .ToList();
+
+               dados.ForEach(p => produto.Add(
+                             new Produto(p.Id, p.Nome, p.Categoria, p.Quantidade, p.QuantidadeMinima)));
+               return true;
+            }
+            else if (rbMaior100.Checked)
+            {
+               var dados = conexao.Produtos.Where(p => p.Quantidade > 100)
+                  .Select(p => new { p.Id, p.Nome, p.Categoria, p.Quantidade, p.QuantidadeMinima })
+                  .ToList();
+
+               dados.ForEach(p => produto.Add(
+                             new Produto(p.Id, p.Nome, p.Categoria, p.Quantidade, p.QuantidadeMinima)));
+               return true;
+            }
+            else if (rbMenor50.Checked)
+            {
+               var dados = conexao.Produtos.Where(p => p.Quantidade < 50)
+                  .Select(p => new { p.Id, p.Nome, p.Categoria, p.Quantidade, p.QuantidadeMinima })
+                  .ToList();
+
+               dados.ForEach(p => produto.Add(
+                             new Produto(p.Id, p.Nome, p.Categoria, p.Quantidade, p.QuantidadeMinima)));
+               return true;
+            }
+            else if (cat.SelectedItem.ToString() != null && rbCat.Checked)
+            {
+               string categoria = cat.SelectedItem.ToString();
+               var dados = conexao.Produtos.Where(p => p.Categoria == categoria)
+                  .Select(p => new { p.Id, p.Nome, p.Categoria, p.Quantidade, p.QuantidadeMinima })
+                  .ToList();
+
+               dados.ForEach(p => produto.Add(
+                             new Produto(p.Id, p.Nome, p.Categoria, p.Quantidade, p.QuantidadeMinima)));
             }
          }
-         else if (rbMenor100.Checked)
+         catch (Exception e)
          {
-            var dados = conexao.Produtos.Where(p => p.Quantidade < 100)
-               .Select(p => new { p.Id, p.Nome, p.Categoria, p.Quantidade, p.QuantidadeMinima })
-               .ToList();
-
-            dados.ForEach(p => produto.Add(
-                          new Produto(p.Id, p.Nome, p.Categoria, p.Quantidade, p.QuantidadeMinima)));
-         }
-         else if (rbMaior100.Checked)
-         {
-            var dados = conexao.Produtos.Where(p => p.Quantidade > 100)
-               .Select(p => new { p.Id, p.Nome, p.Categoria, p.Quantidade, p.QuantidadeMinima })
-               .ToList();
-
-            dados.ForEach(p => produto.Add(
-                          new Produto(p.Id, p.Nome, p.Categoria, p.Quantidade, p.QuantidadeMinima)));
-         }
-         else if (rbMenor50.Checked)
-         {
-            var dados = conexao.Produtos.Where(p => p.Quantidade < 50)
-               .Select(p => new { p.Id, p.Nome, p.Categoria, p.Quantidade, p.QuantidadeMinima })
-               .ToList();
-
-            dados.ForEach(p => produto.Add(
-                          new Produto(p.Id, p.Nome, p.Categoria, p.Quantidade, p.QuantidadeMinima)));
-         }
-         else if (cat.SelectedItem.ToString() != null && rbCat.Checked)
-         {
-            string categoria = cat.SelectedItem.ToString();
-            var dados = conexao.Produtos.Where(p => p.Categoria == categoria)
-               .Select(p => new { p.Id, p.Nome, p.Categoria, p.Quantidade, p.QuantidadeMinima })
-               .ToList();
-
-            dados.ForEach(p => produto.Add(
-                          new Produto(p.Id, p.Nome, p.Categoria, p.Quantidade, p.QuantidadeMinima)));
+            MessageBox.Show("Erro encontrado, selecione um valor ou uma categoria" + e.Message);
+            return false;
          }
          conexao.Dispose();
+         return true;
       }
 
       public static void MesclarDataTable(DataTable dtOne, DataTable dtTwo)
